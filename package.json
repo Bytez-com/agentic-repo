@@ -1,0 +1,43 @@
+{
+  "name": "agentic-repo",
+  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "22"
+  },
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "update": "yarn upgrade-interactive"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@langchain/core": "^0.3.49",
+    "@langchain/openai": "^0.5.7",
+    "@mui/icons-material": "^7.0.2",
+    "@mui/joy": "^5.0.0-beta.52",
+    "@octokit/auth-oauth-app": "^8.1.4",
+    "@octokit/rest": "^21.1.1",
+    "bytez.js": "^1.1.2",
+    "dotenv": "^16.5.0",
+    "firebase": "^11.6.1",
+    "langchain": "^0.3.24",
+    "luxon": "^3.6.1",
+    "next": "^15.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "15.3.1",
+    "typescript": "^5.0.0"
+  }
+}
