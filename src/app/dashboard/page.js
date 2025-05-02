@@ -32,78 +32,78 @@ export default function Dashboard() {
   }, [router]);
 
   return session ? (
-    <>
-      <Box sx={{ display: "flex", minHeight: "100dvh" }}>
-        <Sidebar user={session} />
+    <Box sx={{ display: "flex", minHeight: "100dvh" }}>
+      <Sidebar user={session} />
+      <Box
+        component="main"
+        className="MainContent"
+        sx={{
+          px: { xs: 2, md: 6 },
+          pt: {
+            xs: "calc(12px + var(--Header-height))",
+            sm: "calc(12px + var(--Header-height))",
+            md: 3,
+          },
+          pb: { xs: 2, sm: 2, md: 3 },
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          minWidth: 0,
+          height: "100dvh",
+          gap: 1,
+        }}
+      >
         <Box
-          component="main"
-          className="MainContent"
           sx={{
-            px: { xs: 2, md: 6 },
-            pt: {
-              xs: "calc(12px + var(--Header-height))",
-              sm: "calc(12px + var(--Header-height))",
-              md: 3,
-            },
-            pb: { xs: 2, sm: 2, md: 3 },
-            flex: 1,
             display: "flex",
-            flexDirection: "column",
-            minWidth: 0,
-            height: "100dvh",
+            mb: 1,
             gap: 1,
+            flexDirection: { xs: "column", sm: "row" },
+            alignItems: { xs: "start", sm: "center" },
+            flexWrap: "wrap",
+            justifyContent: "space-between",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              mb: 1,
-              gap: 1,
-              flexDirection: { xs: "column", sm: "row" },
-              alignItems: { xs: "start", sm: "center" },
-              flexWrap: "wrap",
-              justifyContent: "space-between",
-            }}
-          >
-            <Typography level="h2" component="h1">
-              Save your repo
-            </Typography>
-          </Box>
-          <form
-            onSubmit={async (event) => {
-              try {
-                event.preventDefault();
-                const repo = new FormData(event.currentTarget).get("repo");
-
-                setRepo(repo);
-                setSaving(true);
-
-                await setDoc(doc(firestore, "users", session.uid), { repo });
-              } catch (error) {
-                console.error(error);
-              } finally {
-                setSaving(false);
-              }
-            }}
-          >
-            <Stack spacing={1} sx={{ maxWidth: 640 }}>
-              <Input
-                name="repo"
-                value={repo}
-                placeholder="https://github.com/org/repo"
-                onChange={(event) => setRepo(event.target.value)}
-              />
-              <Button
-                type="submit"
-                loading={saving}
-                disabled={repo === user?.repo}
-              >
-                Submit
-              </Button>
-            </Stack>
-          </form>
+          <Typography level="h2" component="h1">
+            Save your repo
+          </Typography>
         </Box>
+        <form
+          onSubmit={async (event) => {
+            try {
+              event.preventDefault();
+              const repo = new FormData(event.currentTarget).get("repo").trim();
+              console.log({ repo });
+              setRepo(repo);
+              setSaving(true);
+
+              // await setDoc(doc(firestore, "users", session.uid), { repo });
+
+              await fetch("/api/agent");
+            } catch (error) {
+              console.error(error);
+            } finally {
+              setSaving(false);
+            }
+          }}
+        >
+          <Stack spacing={1} sx={{ maxWidth: 640 }}>
+            <Input
+              name="repo"
+              value={repo}
+              placeholder="https://github.com/org/repo"
+              onChange={(event) => setRepo(event.target.value)}
+            />
+            <Button
+              type="submit"
+              loading={saving}
+              disabled={repo === user?.repo}
+            >
+              Submit
+            </Button>
+          </Stack>
+        </form>
       </Box>
-    </>
+    </Box>
   ) : null;
 }
