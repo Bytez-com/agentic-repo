@@ -3,7 +3,9 @@ import { cookies } from "next/headers";
 
 export async function GET() {
   try {
-    console.log(await cookies());
+    const cookieStore = await cookies();
+    const { value: session } = cookieStore.get("session");
+    console.log({ session });
     // const [, owner, repo] = new URL(
     //   "https://github.com/mui/material-ui"
     // ).pathname.split("/");
