@@ -21,16 +21,20 @@
     "@mui/icons-material": "^7.0.2",
     "@mui/joy": "^5.0.0-beta.52",
     "@mui/material": "^7.0.2",
+    "@octokit/auth-app": "^7.2.1",
     "@octokit/auth-oauth-app": "^8.1.4",
     "@octokit/rest": "^21.1.1",
     "bytez.js": "^1.1.2",
     "dotenv": "^16.5.0",
     "firebase": "^11.6.1",
+    "highlight.js": "^11.11.1",
     "langchain": "^0.3.24",
     "luxon": "^3.6.1",
     "next": "^15.3.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
+    "rehype-highlight": "^7.0.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.0.0",
