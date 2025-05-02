@@ -5,7 +5,7 @@ import { Typography, Box, Input, Button, Stack } from "@mui/joy";
 import { getAuth } from "firebase/auth";
 
 import Sidebar from "@/component/Sidebar";
-import { firestore, onSnapshot, doc, setDoc } from "@/service/firestore";
+import { firestore, onSnapshot, doc } from "@/service/firestore";
 
 export default function Dashboard() {
   const [session, setSession] = useState();

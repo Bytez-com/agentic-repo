@@ -1,7 +1,7 @@
 // import generateChangelog from "@/tools/changelog";
 import { cookies } from "next/headers";
 
-export async function GET(req) {
+export async function GET() {
   try {
     console.log(await cookies());
     // const [, owner, repo] = new URL(
