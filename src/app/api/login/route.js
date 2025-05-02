@@ -1,4 +1,4 @@
-import { Octokit } from "@octokit/rest";
+// import { Octokit } from "@octokit/rest";
 import { createOAuthAppAuth } from "@octokit/auth-oauth-app";
 
 export async function GET(req) {
@@ -22,7 +22,7 @@ export async function GET(req) {
     const { token } = await auth({ type: "token", code });
 
     // Create an authenticated Octokit instance
-    const octokit = new Octokit({ auth: token });
+    // const octokit = new Octokit({ auth: token });
 
     return Response.json({ token });
   } catch (error) {
