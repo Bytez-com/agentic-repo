@@ -1,40 +1,40 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Box from "@mui/joy/Box";
-import Button from "@mui/joy/Button";
-import Breadcrumbs from "@mui/joy/Breadcrumbs";
-import Link from "@mui/joy/Link";
-import Typography from "@mui/joy/Typography";
-
-import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
-import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
+import { Typography, Box, Input, Button, Stack } from "@mui/joy";
+import { getAuth } from "firebase/auth";
 
 import Sidebar from "@/component/Sidebar";
-// import OrderTable from "@/components/OrderTable";
-// import OrderList from "@/components/OrderList";
-import Header from "@/component/Header";
+import { firestore, onSnapshot, doc, setDoc } from "@/service/firestore";
 
-export default function JoyOrderDashboardTemplate() {
+export default function Dashboard() {
   const [session, setSession] = useState();
+  const [user, setUser] = useState();
+  const [repo, setRepo] = useState("");
+  const [saving, setSaving] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    const session = sessionStorage.getItem("session");
+    const { currentUser } = getAuth();
 
-    if (session === null) {
-      router.replace("/");
-    } else {
-      setSession(JSON.parse(session));
+    if (currentUser === null) {
+      return router.replace("/");
     }
+
+    setSession(currentUser);
+
+    return onSnapshot(doc(firestore, "users", currentUser.uid), (doc) => {
+      const userData = doc.data();
+
+      setUser(userData);
+      setRepo(userData?.repo);
+    });
   }, [router]);
 
   return session ? (
     <>
       <Box sx={{ display: "flex", minHeight: "100dvh" }}>
-        <Header />
-        <Sidebar session={session} />
+        <Sidebar user={session} />
         <Box
           component="main"
           className="MainContent"
@@ -54,37 +54,6 @@ export default function JoyOrderDashboardTemplate() {
             gap: 1,
           }}
         >
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Breadcrumbs
-              size="sm"
-              aria-label="breadcrumbs"
-              separator={<ChevronRightRoundedIcon fontSize="sm" />}
-              sx={{ pl: 0 }}
-            >
-              <Link
-                underline="none"
-                color="neutral"
-                href="#some-link"
-                aria-label="Home"
-              >
-                <HomeRoundedIcon />
-              </Link>
-              <Link
-                underline="hover"
-                color="neutral"
-                href="#some-link"
-                sx={{ fontSize: 12, fontWeight: 500 }}
-              >
-                Dashboard
-              </Link>
-              <Typography
-                color="primary"
-                sx={{ fontWeight: 500, fontSize: 12 }}
-              >
-                Orders
-              </Typography>
-            </Breadcrumbs>
-          </Box>
           <Box
             sx={{
               display: "flex",
@@ -97,18 +66,42 @@ export default function JoyOrderDashboardTemplate() {
             }}
           >
             <Typography level="h2" component="h1">
-              Orders
+              Save your repo
             </Typography>
-            <Button
-              color="primary"
-              startDecorator={<DownloadRoundedIcon />}
-              size="sm"
-            >
-              Download PDF
-            </Button>
           </Box>
-          {/* <OrderTable />
-          <OrderList /> */}
+          <form
+            onSubmit={async (event) => {
+              try {
+                event.preventDefault();
+                const repo = new FormData(event.currentTarget).get("repo");
+
+                setRepo(repo);
+                setSaving(true);
+
+                await setDoc(doc(firestore, "users", session.uid), { repo });
+              } catch (error) {
+                console.error(error);
+              } finally {
+                setSaving(false);
+              }
+            }}
+          >
+            <Stack spacing={1} sx={{ maxWidth: 640 }}>
+              <Input
+                name="repo"
+                value={repo}
+                placeholder="https://github.com/org/repo"
+                onChange={(event) => setRepo(event.target.value)}
+              />
+              <Button
+                type="submit"
+                loading={saving}
+                disabled={repo === user?.repo}
+              >
+                Submit
+              </Button>
+            </Stack>
+          </form>
         </Box>
       </Box>
     </>

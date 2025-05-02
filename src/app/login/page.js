@@ -121,24 +121,21 @@ export default function Login() {
                 fullWidth
                 startDecorator={<GitHubIcon />}
                 onClick={async () => {
+                  const auth = getAuth(app);
+
                   const result = await signInWithPopup(
-                    getAuth(app),
+                    auth,
                     new GithubAuthProvider()
                   );
+
                   // This gives you a GitHub Access Token. You can use it to access the GitHub API.
                   const { accessToken } =
                     GithubAuthProvider.credentialFromResult(result);
 
-                  const user = result.user;
-
                   document.cookie = "session=" + accessToken;
-                  sessionStorage.setItem(
-                    "session",
-                    JSON.stringify({ accessToken, user })
-                  );
+                  sessionStorage.setItem("session", accessToken);
 
                   router.push("/dashboard");
-                  console.log("success", user, accessToken);
                 }}
               >
                 Continue with GitHub
@@ -154,18 +151,7 @@ export default function Login() {
               or
             </Divider>
             <Stack sx={{ gap: 4, mt: 2 }}>
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  const formElements = event.currentTarget.elements;
-                  const data = {
-                    email: formElements.email.value,
-                    password: formElements.password.value,
-                    persistent: formElements.persistent.checked,
-                  };
-                  alert(JSON.stringify(data, null, 2));
-                }}
-              >
+              <form onSubmit={(event) => event.preventDefault()}>
                 <FormControl required>
                   <FormLabel>Email</FormLabel>
                   <Input type="email" name="email" />
@@ -225,40 +211,3 @@ export default function Login() {
     </>
   );
 }
-
-// "use client";
-// import { useEffect } from "react";
-
-// export default function Page() {
-//   useEffect(() => {
-//     const auth = getAuth(app);
-//     const provider = new GithubAuthProvider();
-
-//     signInWithPopup(auth, provider)
-//       .then((result) => {
-//         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-//         const credential = GithubAuthProvider.credentialFromResult(result);
-//         const token = credential.accessToken;
-
-//         // The signed-in user info.
-//         const user = result.user;
-//         // IdP data available using getAdditionalUserInfo(result)
-//         // ...
-
-//         console.log("success", user, token);
-//       })
-//       .catch((error) => {
-//         console.warn("failed");
-//         // Handle Errors here.
-//         const errorCode = error.code;
-//         const errorMessage = error.message;
-//         // The email of the user's account used.
-//         const email = error.customData.email;
-//         // The AuthCredential type that was used.
-//         const credential = GithubAuthProvider.credentialFromError(error);
-//         // ...
-//       });
-//   }, []);
-
-//   return null;
-// }

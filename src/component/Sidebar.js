@@ -23,8 +23,9 @@ import {
   CloseRounded as CloseRoundedIcon,
   LogoutRounded as LogoutRoundedIcon,
 } from "@mui/icons-material";
+import { getAuth, signOut } from "firebase/auth";
 
-export default function Sidebar({ session }) {
+export default function Sidebar({ user }) {
   return (
     <Sheet
       className="Sidebar"
@@ -171,10 +172,10 @@ export default function Sidebar({ session }) {
       </Box>
       <Divider />
       <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-        <Avatar variant="outlined" size="sm" src={session.user.photoURL} />
+        <Avatar variant="outlined" size="sm" src={user.photoURL} />
         <Box sx={{ minWidth: 0, flex: 1 }}>
-          <Typography level="title-sm">{session.user.displayName}</Typography>
-          <Typography level="body-xs">{session.user.email}</Typography>
+          <Typography level="title-sm">{user.displayName}</Typography>
+          <Typography level="body-xs">{user.email}</Typography>
         </Box>
         <IconButton
           size="sm"
@@ -182,7 +183,7 @@ export default function Sidebar({ session }) {
           color="neutral"
           component="a"
           href="/"
-          onClick={() => sessionStorage.removeItem("session")}
+          onClick={() => signOut(getAuth())}
         >
           <LogoutRoundedIcon />
         </IconButton>

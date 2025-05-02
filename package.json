@@ -1,13 +1,13 @@
 {
   "name": "agentic-repo",
-  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447",
+  "packageManager": "yarn@4.9.1",
   "version": "0.1.0",
   "private": true,
   "engines": {
     "node": "22"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack --port 5000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -20,6 +20,7 @@
     "@langchain/openai": "^0.5.7",
     "@mui/icons-material": "^7.0.2",
     "@mui/joy": "^5.0.0-beta.52",
+    "@mui/material": "^7.0.2",
     "@octokit/auth-oauth-app": "^8.1.4",
     "@octokit/rest": "^21.1.1",
     "bytez.js": "^1.1.2",

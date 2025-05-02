@@ -66,10 +66,6 @@ const TwoSidedLayout = ({ children, reversed, img }) => (
       })}
     >
       <Image fill src={img} alt="Image" />
-      {/* <img
-        src="https://images.unsplash.com/photo-1483791424735-e9ad0209eea2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-        alt=""
-      /> */}
     </AspectRatio>
   </Container>
 );

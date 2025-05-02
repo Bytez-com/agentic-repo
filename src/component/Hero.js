@@ -58,7 +58,7 @@ export default function Hero({
           transform: "translateX(-50%)",
         }}
       >
-        The Agentic Repo
+        Make Your Repo Agentic
       </Typography>
     </TwoSidedLayout>
   );
