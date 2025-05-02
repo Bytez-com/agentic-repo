@@ -7,16 +7,20 @@ import {
   Card,
   CardContent,
   CardActions,
+  Stack,
+  Input,
 } from "@mui/joy";
 import { Check as CheckIcon } from "@mui/icons-material";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import Sidebar from "@/component/Sidebar";
-import { firestore, onSnapshot, doc } from "@/service/firestore";
+import { listen } from "@/service/firebase/firestore";
 
 export default function Dashboard() {
   const [session, setSession] = useState();
+  const [user, setUser] = useState();
   const [repo, setRepo] = useState("");
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     return onAuthStateChanged(getAuth(), (session) => {
@@ -26,7 +30,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (session) {
-      return onSnapshot(doc(firestore, "users", session.uid), (doc) => {
+      return listen(`users/${session.uid}`, (doc) => {
         const userData = doc.data();
 
         setUser(userData);
@@ -83,6 +87,16 @@ export default function Dashboard() {
                     {repo}
                   </Typography>
                 </Typography>
+                <Button
+                  variant="solid"
+                  color="primary"
+                  onClick={() => {
+                    const githubAppAuthUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api/webhook/github_install_app?uid=${session.uid}`;
+                    window.open(githubAppAuthUrl);
+                  }}
+                >
+                  Force Reinstall
+                </Button>
               </CardContent>
             ) : (
               <>

@@ -1,4 +1,4 @@
-import { firestore, doc, updateDoc } from "@/service/firestore";
+import { update } from "@/service/firebase/firestore";
 
 // Redirect users to GitHub's authorization page to begin the app installation flow
 export async function GET(req) {
@@ -11,7 +11,7 @@ export async function GET(req) {
 
   const githubAppInstallState = crypto.randomUUID();
 
-  await updateDoc(doc(firestore, "users", uid), { githubAppInstallState });
+  await update(`users/${uid}`, { githubAppInstallState });
 
   githubAuthUrl.searchParams.append("state", githubAppInstallState);
 

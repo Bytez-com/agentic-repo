@@ -6,10 +6,9 @@ import {
   getDocs,
   query,
   where,
-  updateDoc,
-  doc,
+  update,
   deleteField,
-} from "@/service/firestore";
+} from "@/service/firebase/firestore";
 
 export async function GET(req) {
   try {
@@ -42,14 +41,12 @@ export async function GET(req) {
 
     const [repoData] = data.repositories;
 
-    await updateDoc(doc(firestore, "users", user.id), {
+    await update(`users/${user.id}`, {
       installation_id,
       repoData,
       repo: repoData.html_url,
       githubAppInstallState: deleteField(),
     });
-
-    console.log("Installed repos:", data.repositories);
 
     return Response.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/dashboard`);
   } catch (error) {

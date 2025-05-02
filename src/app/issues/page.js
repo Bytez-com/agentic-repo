@@ -1,6 +1,5 @@
 "use client";
 import { Fragment, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import {
   Typography,
   Box,
@@ -12,7 +11,7 @@ import {
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import Sidebar from "@/component/Sidebar";
-import { firestore, onSnapshot, doc } from "@/service/firestore";
+import { listen } from "@/service/firebase/firestore";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github.css"; // or another highlight.js theme
@@ -30,11 +29,9 @@ export default function Issues() {
 
   useEffect(() => {
     if (session) {
-      return onSnapshot(doc(firestore, "users", session.uid), (doc) => {
+      return listen(`users/${session.uid}`, (doc) => {
         const userData = doc.data();
 
-        setUser(userData);
-        setRepo(userData?.repo);
         setAppInstalled(!!userData?.repoData);
         setIssues(userData?.issues ?? []);
       });

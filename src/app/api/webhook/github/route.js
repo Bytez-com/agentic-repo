@@ -6,10 +6,9 @@ import {
   getDocs,
   query,
   where,
-  updateDoc,
-  doc,
+  update,
   arrayUnion,
-} from "@/service/firestore";
+} from "@/service/firebase/firestore";
 
 export async function POST(req) {
   try {
@@ -70,13 +69,13 @@ export async function POST(req) {
 
         const updatedIssue = { url, title, body, response };
 
-        await updateDoc(doc(firestore, "users", user.id), {
+        await update(`users/${user.id}`, {
           issues: arrayUnion(updatedIssue),
         });
       } else {
         const newIssues = user.issues.filter((issue) => issue.url !== url);
 
-        await updateDoc(doc(firestore, "users", user.id), {
+        await update(`users/${user.id}`, {
           issues: newIssues,
         });
       }
