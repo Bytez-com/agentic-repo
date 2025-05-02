@@ -14,7 +14,7 @@ import { Check as CheckIcon } from "@mui/icons-material";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import Sidebar from "@/component/Sidebar";
-import { listen } from "@/service/firebase/firestore";
+import { listen, set } from "@/service/firebase/firestore";
 
 export default function Dashboard() {
   const [session, setSession] = useState();
