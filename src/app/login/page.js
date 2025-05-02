@@ -121,19 +121,19 @@ export default function Login() {
                 fullWidth
                 startDecorator={<GitHubIcon />}
                 onClick={async () => {
-                  const auth = getAuth(app);
-
                   const result = await signInWithPopup(
-                    auth,
+                    getAuth(app),
                     new GithubAuthProvider()
                   );
+                  const session = JSON.stringify({
+                    uid: result.user.uid,
+                    accessToken:
+                      GithubAuthProvider.credentialFromResult(result)
+                        .accessToken,
+                  });
 
-                  // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-                  const { accessToken } =
-                    GithubAuthProvider.credentialFromResult(result);
-
-                  document.cookie = "session=" + accessToken;
-                  sessionStorage.setItem("session", accessToken);
+                  document.cookie = "session=" + session;
+                  sessionStorage.setItem("session", session);
 
                   router.push("/dashboard");
                 }}
