@@ -1,19 +1,40 @@
 import { Octokit } from "@octokit/rest";
-import { ChatOpenAI } from "@langchain/openai";
-// import Bytez from 'bytez.js'
-// import { ChatPromptTemplate } from "@langchain/core/prompts";
+import Bytez from "bytez.js";
 
-// 1. Setup Octokit (GitHub API Client)
-const octokit = new Octokit(); // optionally { auth: process.env.GITHUB_TOKEN }
+const sdk = new Bytez(process.env.BYTEZ_KEY);
 
-// 2. Setup ChatOpenAI (LangChain)
-const model = new ChatOpenAI({
-  model: "gpt-4o-mini",
-  temperature: 0.2,
-});
+export default async function changeLogTool(repoUrl, accessToken) {
+  const newCommits = await getNewCommits(repoUrl, accessToken);
+  const changeLog = await generateChangelog(newCommits);
 
-// 3. Fetch commits from GitHub
-async function fetchCommits(owner, repo) {
+  await addImages(changeLog);
+
+  return changeLog;
+}
+// get commits
+async function getNewCommits(repoUrl, accessToken) {
+  const octokit = new Octokit({ auth: accessToken }); // optionally { auth: process.env.GITHUB_TOKEN }
+  const url = repoUrl.split("/");
+  const owner = url.at(-2);
+  const repo = url.at(-1).trim();
+  const commits = await fetchCommits(octokit, owner, repo);
+  const changelogContent = await fetchChangelog(owner, repo);
+  const existingSHAs = changelogContent.match(/[0-9a-f]{7}/g) || []; // Find all 7-character SHAs
+  const newCommits = commits.filter(
+    (commit) => !existingSHAs.includes(commit.sha)
+  );
+
+  if (newCommits.length === 0) {
+    return console.log("No new commits to include in the changelog.");
+  }
+
+  const commitMessages = newCommits
+    .map((commit) => `- ${commit.message} (${commit.sha})`)
+    .join("\n");
+
+  return commitMessages;
+}
+async function fetchCommits(octokit, owner, repo) {
   const {
     data: { default_branch },
   } = await octokit.repos.get({ owner, repo });
@@ -40,9 +61,7 @@ async function fetchCommits(owner, repo) {
 
   return commits;
 }
-
-// 4. Read the current CHANGELOG.md from GitHub
-async function fetchChangelog(owner, repo) {
+async function fetchChangelog(octokit, owner, repo) {
   try {
     const response = await octokit.repos.getContent({
       owner,
@@ -58,39 +77,38 @@ async function fetchChangelog(owner, repo) {
     return "";
   }
 }
+// generate changelog
+async function generateChangelog(newCommits) {
+  const model = sdk.model("openai/gpt-4o-mini", process.env.OPENAI_API_KEY);
+  const { output, error, provider } = await model.run([
+    {
+      role: "system",
+      content: `You are a professional release manager.
 
-// 5. Main function to generate new changelog
-export default async function generateChangelog(owner, repo) {
-  const commits = await fetchCommits(owner, repo);
-  const changelogContent = await fetchChangelog(owner, repo);
-  const existingSHAs = changelogContent.match(/[0-9a-f]{7}/g) || []; // Find all 7-character SHAs
-  const newCommits = commits.filter(
-    (commit) => !existingSHAs.includes(commit.sha)
-  );
+        Your job is to write a clean, readable changelog for a new software release based on commit messages.
+      `,
+    },
+    {
+      role: "user",
+      content: `
+        Here are the new commit messages:
 
-  if (newCommits.length === 0) {
-    console.log("No new commits to include in the changelog.");
+        ${newCommits}
 
-    return "No new commits to add.";
-  }
-
-  const commitMessages = newCommits
-    .map((c) => `- ${c.message} (${c.sha})`)
-    .join("\n");
-
-  const prompt = ChatPromptTemplate.fromMessages([
-    [
-      "system",
-      "You are a professional release manager. Your job is to write a clean, readable changelog for a new software release based on commit messages.",
-    ],
-    [
-      "user",
-      `Here are the new commit messages:\n\n${commitMessages}\n\nPlease generate a structured changelog, grouping features, fixes, chores, and docs separately.`,
-    ],
+        Please generate a structured changelog, grouping features, fixes, chores, and docs separately.`,
+    },
   ]);
 
-  const chain = prompt.pipe(model);
-  const { content } = await chain.invoke();
+  console.log({ output, error, provider });
 
-  return content;
+  return output.content;
+}
+// add images
+async function addImages(changeLog) {
+  const model = sdk.model(
+    "nitrosocke/Ghibli-Diffusion",
+    process.env.OPENAI_API_KEY
+  );
+
+  // await model.create({ capacity: { min: 3, max: 3  } });
 }

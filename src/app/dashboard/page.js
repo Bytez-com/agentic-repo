@@ -5,7 +5,7 @@ import { Typography, Box, Input, Button, Stack } from "@mui/joy";
 import { getAuth } from "firebase/auth";
 
 import Sidebar from "@/component/Sidebar";
-import { firestore, onSnapshot, doc } from "@/service/firestore";
+import { listen, set } from "@/service/firebase/firestore";
 
 export default function Dashboard() {
   const [session, setSession] = useState();
@@ -23,7 +23,7 @@ export default function Dashboard() {
 
     setSession(currentUser);
 
-    return onSnapshot(doc(firestore, "users", currentUser.uid), (doc) => {
+    return listen(`users/${currentUser.uid}`, (doc) => {
       const userData = doc.data();
 
       setUser(userData);
@@ -73,13 +73,14 @@ export default function Dashboard() {
             try {
               event.preventDefault();
               const repo = new FormData(event.currentTarget).get("repo").trim();
-              console.log({ repo });
               setRepo(repo);
               setSaving(true);
 
-              // await setDoc(doc(firestore, "users", session.uid), { repo });
+              await set(`users/${session.uid}`, { repo });
 
-              await fetch("/api/agent");
+              await fetch("/api/agent")
+                .then((res) => res.text())
+                .then(console.log);
             } catch (error) {
               console.error(error);
             } finally {
