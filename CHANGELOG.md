@@ -1,4 +1,3 @@
-```markdown
 ![Changelog Banner](https://cdn.bytez.com/images/inference/1X4brfenrp3-jTZwfuxuw.png)
 
 # Changelog
@@ -15,4 +14,3 @@
 - First commit (a86aa64).
 ## Documentation
 - No updates in this release.
-```
