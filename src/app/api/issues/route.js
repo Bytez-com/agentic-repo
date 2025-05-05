@@ -44,7 +44,7 @@ async function hasWebhook(owner, repo, octokit, uid) {
 }
 async function installWebHook(owner, repo, octokit, uid) {
   const webhookUrl = `https://agentic-repo--agentic-repo.us-central1.hosted.app/api/issues/${uid}`;
-  const installed = await hasWebhook(owner, repo, octokit);
+  const installed = await hasWebhook(owner, repo, octokit, uid);
 
   if (installed === false) {
     await octokit.rest.repos.createWebhook({
