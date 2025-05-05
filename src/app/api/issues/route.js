@@ -52,7 +52,6 @@ async function installWebHook(owner, repo, octokit, uid) {
       repo,
       active: true,
       events: ["issues"],
-      secret: uid,
       config: { content_type: "json", url: webhookUrl },
     });
   }
