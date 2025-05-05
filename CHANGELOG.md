@@ -1,28 +1,27 @@
-![Changelog Header](https://cdn.bytez.com/images/inference/6F1KzDzM4HvKWxbvxpci9.png)
+![Changelog Header](https://cdn.bytez.com/images/inference/jAHu3GAgf36UeZvHPIbiG.png)
 
 ## Release Notes
 
-### Features:
-- Added a changelog tool and page for better release tracking.
-- Integrated Firebase and enabled cookie functionality for app hosting.
-- Added a demo of the issues tool.
-- Started working on webhook integration.
+### Features
+- Added initial changelog 
+- Integrated Firebase
+- Added tool for generating changelogs
+- Implemented webhook integration
+- Added issue tool
+- Enabled cookie functionality
 
-### Fixes:
-- Fixed build errors, including eslint issues and import errors.
-- Corrected an issue with Firebase admin.
-- Removed unused files, deps, and routes to streamline the build.
-- Made secrets available only during runtime for security.
-- Fixed a sign-out bug and an issue with the webhook install checker.
+### Fixes
+- Fixed rate limit issue
+- Resolved build errors, including sign out bug and missing imports
+- Corrected issue with firebase-admin
+- Removed unused files, deps, and routes 
 
-### Chores:
-- Updated the changelog and maintained the repository with various chores.
-- Removed unused files and performed general cleanup.
-- Made the Bytez SDK more dry.
+### Chores
+- Updated changelog  (multiple entries)
+- Added secrets to apphosting, made them available during runtime
+- Removed eslint errors
+- Merged branches
+- Other general chores
 
-### Documentation:
+### Docs
 - None
-
---- 
-
-Helpful? Let me know if you'd like any changes or additional info.
