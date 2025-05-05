@@ -27,6 +27,7 @@ import {
 } from "@mui/icons-material";
 
 import useSession from "@/component/Hooks/useSession";
+import { getAuth, signOut } from "firebase/auth";
 
 export default function Sidebar() {
   const pathname = usePathname();

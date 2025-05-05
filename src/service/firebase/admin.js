@@ -5,13 +5,14 @@ import path from "path";
 
 let [app] = getApps();
 
-app ??= initializeApp({
-  credential:
-    process.env.NODE_ENV === "production"
-      ? undefined
-      : admin.credential.cert(
+app ??= initializeApp(
+  process.env.NODE_ENV === "production"
+    ? undefined
+    : {
+        credential: admin.credential.cert(
           path.resolve(process.cwd(), "service-account.json")
         ),
-});
+      }
+);
 
 export const firestore = getFirestore(app, "agentic-repo");
