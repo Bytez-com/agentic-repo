@@ -1,20 +1,20 @@
-![Changelog Banner](https://cdn.bytez.com/images/inference/ImETX3ETRZvR-5-JWpLjt.png)
+![Changelog Banner](https://cdn.bytez.com/images/inference/UwOpRtR9lv3ucudkLuhW6.png)
 
 # Changelog
 
 ## Features
-- Cookies now work in app hosting. (ef4290d)
-- Firebase integrated. (f3ee361)
+- Cookies are now functional in app hosting. (Commit: ef4290d)
+- Firebase integration completed. (Commit: f3ee361)
 
 ## Fixes
-- Test cookie functionality in Firebase hosting. (da1c664)
-- Remove eslint errors. (995afda)
+- Removed ESLint errors. (Commit: 995afda)
+- Tested cookie functionality in Firebase hosting. (Commit: da1c664)
 
 ## Chores
-- Update CHANGELOG. (194fcf1, 48ad018)
-- Add initial CHANGELOG. (fc1a9c5)
-- Start building the changeLog tool. (a39c3b6)
-- Disable tools that aren't enabled. (a8e2d37)
+- Update CHANGELOG files. (Commits: 14e13a2, 194fcf1, 48ad018)
+- Added initial CHANGELOG. (Commit: fc1a9c5)
+- Started building the changelog tool. (Commit: a39c3b6)
+- Disabled tools that aren't enabled. (Commit: a8e2d37)
 
-## Docs
-- Update CHANGELOG.md. (48ad018)
+## Documentation
+- Initial documentation for CHANGELOG added. (Commit: fc1a9c5)
