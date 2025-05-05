@@ -1,25 +1,37 @@
-![Changelog Banner](https://cdn.bytez.com/images/inference/2_N6FcIaDfuaScULMzrXZ.png)
+![Changelog Banner](https://cdn.bytez.com/images/inference/mJZZaHsYxRJ70hsAfx5Kd.png)
 
 # Changelog
 
 ## [Unreleased]
 
 ### Features
-- **Cookies Functionality**: Cookies now work in app hosting. (commit: ef4290d)
-- **Firebase Integration**: Integrated Firebase into the application. (commit: f3ee361)
+- Add changelog tool and page (905639f)
+- Try adding issue tool (78ef92c)
+- Start building the changelog tool (a39c3b6)
+- Start working on webhook integration (405467b)
+- Firebase integrated (f3ee361)
+- Cookies now work in app hosting (ef4290d)
 
 ### Fixes
-- **ESLint Errors**: Removed ESLint errors from the codebase. (commit: 995afda)
-- **Cookie Functionality Testing**: Added tests for cookie functionality in Firebase hosting. (commit: da1c664)
+- Fix missing import (b39c5ca)
+- Fix webhook install checker (9431204)
+- Fix sign out bug (1ece387)
+- Fix build errors (3c70447)
+- Correcting firebase-admin (fbd336f)
+- Remove unused dependencies (82dda37)
+- Remove unused routes (6917d4a)
+- Disable tools that aren't enabled (a8e2d37)
+- Remove eslint errors (995afda)
 
-### Chores
-- **Initial Changelog**: Added initial CHANGELOG. (commit: fc1a9c5)
-- **Changelog Tool Development**: Started building the changelog tool. (commit: a39c3b6)
-- **Update CHANGELOG**: Multiple updates to CHANGELOG for versioning clarity and communication. (commits: f96c40a, 9b64db8, 724b4dd, 7fb62f2, 14e13a2, 194fcf1, 48ad018)
-- **Disable Unused Tools**: Disabled tools that are not enabled. (commit: a8e2d37)
+### Tests
+- Begin testing issues tool (db0d1bf)
+- Test cookie functionality in Firebase hosting (da1c664)
 
-### Documentation
-- **CHANGELOG Updates**: Regular updates to the CHANGELOG for better tracking of changes. (commits: f96c40a, 9b64db8, 724b4dd, 7fb62f2, 14e13a2, 194fcf1, 48ad018)
+### Chore
+- Chore: update CHANGELOG [skip ci] (multiple)
+- Update CHANGELOG.md (48ad018)
+- Chore: add initial CHANGELOG (fc1a9c5)
 
-## [Initial Release]
-- **First Commit**: Project initialization and first commit. (commit: a86aa64)
+### Initial Commits
+- Init (d79f767)
+- First commit (a86aa64)
