@@ -17,7 +17,7 @@ export default async function issueTool(uid, issue, repository, sender) {
 }
 
 async function generateResponse({ title, body }, sender) {
-  const { output } = model.run([
+  const { output } = await model.run([
     {
       role: "system",
       content: `
@@ -44,13 +44,13 @@ async function generateResponse({ title, body }, sender) {
   return output.content;
 }
 
-async function replyToIssue(uid, { owner, repo }, issue, response) {
+async function replyToIssue(uid, { owner, name }, issue, response) {
   const { accessToken } = await getFirestoreData(uid);
   const octokit = new Octokit({ auth: accessToken });
 
   await octokit.rest.issues.createComment({
-    owner,
-    repo,
+    owner: owner.login,
+    repo: name,
     issue_number: issue.number,
     body: response,
   });

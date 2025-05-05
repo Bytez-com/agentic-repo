@@ -7,7 +7,7 @@ export async function POST(req, { params }) {
       req.json(),
     ]);
 
-    if (action === "created") {
+    if (action === "opened") {
       await issueTool(uid, issue, repository, sender);
     }
 
