@@ -1,40 +1,51 @@
-![Changelog Banner](https://cdn.bytez.com/images/inference/4ezBup8LuqqwNuKAgPDif.png)
+![Bytez Changelog Banner](https://cdn.bytez.com/images/inference/zmh6IVIIAVG3HX_gRecwY.png)
 
 # Changelog
-
-## Features
+## [Unreleased]
+### Features
 - Add changelog tool and page (905639f)
-- Finish demo of issues tool (2e5bd7b)
-- Try adding issue tool (78ef92c)
+- Make Bytez SDK DRY (e6e5740)
+- Start building the changelog tool (a39c3b6)
 - Start working on webhook integration (405467b)
-- Begin testing issues tool (db0d1bf)
-- Firebase integrated (f3ee361)
-- Cookies now work in app hosting (ef4290d)
-
-## Fixes
-- Fix env variable name (8f3cd32)
-- Fix missing import (b39c5ca)
+- Try adding issue tool (78ef92c)
+- Finish demo of issues tool (2e5bd7b)
+### Fixes
+- Fix UID (6818b18)
+- Fix environment variable name (8f3cd32)
+- Fix sign-out bug (1ece387)
 - Fix webhook install checker (9431204)
-- Fix sign out bug (1ece387)
 - Fix build errors (3c70447)
 - Correcting firebase-admin (fbd336f)
-- Remove unused deps (82dda37)
+- Fix missing import (b39c5ca)
+- Try to fix rate limit issue (0ccd534)
+- Remove unused files (2a6530f)
 - Remove unused routes (6917d4a)
-
-## Chores
-- Update CHANGELOG [skip ci] (multiple)
-- Add initial CHANGELOG (fc1a9c5)
-- Start building the changeLog tool (a39c3b6)
-- Disable tools that aren't enabled (a8e2d37)
-
-## Other
+- Remove unused dependencies (82dda37)
+- Log error (76f013e)
+- Cookies now work in app hosting (ef4290d)
+- Test cookie functionality in Firebase hosting (da1c664)
 - Make secrets only available during runtime (44fab62)
+- Add missing environment variables to build (9f73aee)
 - Retry adding secrets (bf29eb4)
-- Add secrets to apphosting (79cad68)
-- Try switching to google secrets (97dd4fa)
-- Add missing env variables to build (9f73aee)
-- Test cookie functionality in firebase hosting (da1c664)
-- Remove eslint errors (995afda)
-
-### Merges
-- Merge branch 'main' of https://github.com/Bytez-com/agentic-repo into main (multiple)
+- Try switching to Google secrets (97dd4fa)
+### Chores
+- Update CHANGELOG [skip ci] (6b46f9d)
+- Update CHANGELOG [skip ci] (cdbfaf7)
+- Update CHANGELOG [skip ci] (b9fd8a2)
+- Update CHANGELOG [skip ci] (400e517)
+- Update CHANGELOG [skip ci] (f96c40a)
+- Update CHANGELOG [skip ci] (9b64db8)
+- Update CHANGELOG [skip ci] (724b4dd)
+- Update CHANGELOG [skip ci] (7fb62f2)
+- Update CHANGELOG [skip ci] (14e13a2)
+- Update CHANGELOG [skip ci] (194fcf1)
+- Add initial CHANGELOG (fc1a9c5)
+### Docs
+- Update CHANGELOG.md (48ad018)
+### Miscellaneous
+- Merge branch 'main' (multiple commits)
+- Final check-in - the hacker is hacking on a computer. victory (4096d08)
+- Disable tools that aren't enabled (a8e2d37)
+- Firebase integrated (f3ee361)
+- Init (d79f767)
+- First commit (a86aa64)
