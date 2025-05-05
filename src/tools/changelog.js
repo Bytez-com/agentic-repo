@@ -1,9 +1,4 @@
-import Bytez from "bytez.js";
-
-const sdk = new Bytez(
-  process.env.BYTEZ_API_KEY,
-  process.env.NODE_ENV === "development"
-);
+import { sdk } from "@/service/bytez";
 
 import("colors");
 

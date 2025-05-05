@@ -1,12 +1,7 @@
 import { Octokit } from "@octokit/rest";
-import Bytez from "bytez.js";
 
+import { sdk } from "@/service/bytez";
 import { getFirestoreData } from "@/service/session";
-
-const sdk = new Bytez(
-  process.env.BYTEZ_API_KEY,
-  process.env.NODE_ENV === "development"
-);
 
 const model = sdk.model("openai/gpt-4o", process.env.OPENAI_API_KEY);
 
