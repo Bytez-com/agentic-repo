@@ -34,7 +34,6 @@ yarn-error.log*
 .env
 service-account.json
 
-apphosting.yaml
 # vercel
 .vercel
 

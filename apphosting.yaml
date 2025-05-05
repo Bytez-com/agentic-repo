@@ -1,0 +1,18 @@
+# Settings for Cloud Run
+runConfig:
+  minInstances: 1
+  maxInstances: 1
+  concurrency: 1000
+
+# Environment variables and secrets
+env:
+  - variable: NODE_ENV
+    value: production
+  - variable: BYTEZ_API_KEY
+    value: BYTEZ_API_KEY
+  - variable: OPENAI_API_KEY
+    value: OPENAI_API_KEY
+  - variable: GEMINI_API_KEY
+    value: GEMINI_API_KEY
+  - variable: CLAUDE_API_KEY
+    value: CLAUDE_API_KEY
