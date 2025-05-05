@@ -4,7 +4,7 @@ import Bytez from "bytez.js";
 import { getFirestoreData } from "@/service/session";
 
 const sdk = new Bytez(
-  process.env.BYTEZ_KEY,
+  process.env.BYTEZ_API_KEY,
   process.env.NODE_ENV === "development"
 );
 
