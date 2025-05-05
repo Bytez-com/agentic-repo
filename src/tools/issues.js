@@ -8,7 +8,7 @@ const sdk = new Bytez(
   process.env.NODE_ENV === "development"
 );
 
-const model = sdk.model("openai/gpt-4o-mini", process.env.OPENAI_API_KEY);
+const model = sdk.model("openai/gpt-4o", process.env.OPENAI_API_KEY);
 
 export default async function issueTool(uid, issue, repository, sender) {
   try {
