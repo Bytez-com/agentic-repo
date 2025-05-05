@@ -121,10 +121,13 @@ export default function Login() {
                 fullWidth
                 startDecorator={<GitHubIcon />}
                 onClick={async () => {
-                  const result = await signInWithPopup(
-                    getAuth(app),
-                    new GithubAuthProvider()
-                  );
+                  const provider = new GithubAuthProvider();
+
+                  provider.addScope("public_repo");
+                  provider.addScope("repo");
+
+                  const result = await signInWithPopup(getAuth(app), provider);
+
                   const session = JSON.stringify({
                     uid: result.user.uid,
                     accessToken:
@@ -133,7 +136,6 @@ export default function Login() {
                   });
 
                   document.cookie = "session=" + session;
-                  sessionStorage.setItem("session", session);
 
                   router.push("/dashboard");
                 }}

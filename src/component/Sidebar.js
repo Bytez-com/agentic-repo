@@ -1,3 +1,5 @@
+"use client";
+import { usePathname } from "next/navigation";
 import {
   Avatar,
   Box,
@@ -23,9 +25,18 @@ import {
   CloseRounded as CloseRoundedIcon,
   LogoutRounded as LogoutRoundedIcon,
 } from "@mui/icons-material";
-import { getAuth, signOut } from "firebase/auth";
 
-export default function Sidebar({ user }) {
+import useSession from "@/component/Hooks/useSession";
+
+export default function Sidebar() {
+  const pathname = usePathname();
+  const session = useSession();
+  const buttons = [
+    ["install", InstallIcon, "/dashboard"],
+    ["changelog", ChangeLogIcon, "/dashboard/changelog"],
+    ["issues", IssuesIcon, "/dashboard/issues"],
+  ];
+
   return (
     <Sheet
       className="Sidebar"
@@ -113,32 +124,22 @@ export default function Sidebar({ user }) {
             "--ListItem-radius": (theme) => theme.vars.radius.sm,
           }}
         >
-          <ListItem>
-            <ListItemButton selected>
-              <InstallIcon />
-              <ListItemContent>
-                <Typography level="title-md">Install</Typography>
-              </ListItemContent>
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem>
-            <ListItemButton>
-              <ChangeLogIcon />
-              <ListItemContent>
-                <Typography level="title-md">Changelog</Typography>
-              </ListItemContent>
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem>
-            <ListItemButton>
-              <IssuesIcon />
-              <ListItemContent>
-                <Typography level="title-md">Issues</Typography>
-              </ListItemContent>
-            </ListItemButton>
-          </ListItem>
+          {buttons.map(([label, Icon, href]) => (
+            <ListItem key={href}>
+              <ListItemButton
+                component="a"
+                href={href}
+                selected={pathname === href}
+              >
+                <Icon />
+                <ListItemContent>
+                  <Typography level="title-md" textTransform="capitalize">
+                    {label}
+                  </Typography>
+                </ListItemContent>
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
         <Card
           invertedColors
@@ -172,10 +173,10 @@ export default function Sidebar({ user }) {
       </Box>
       <Divider />
       <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-        <Avatar variant="outlined" size="sm" src={user.photoURL} />
+        <Avatar variant="outlined" size="sm" src={session.photoURL} />
         <Box sx={{ minWidth: 0, flex: 1 }}>
-          <Typography level="title-sm">{user.displayName}</Typography>
-          <Typography level="body-xs">{user.email}</Typography>
+          <Typography level="title-sm">{session.displayName}</Typography>
+          <Typography level="body-xs">{session.email}</Typography>
         </Box>
         <IconButton
           size="sm"
