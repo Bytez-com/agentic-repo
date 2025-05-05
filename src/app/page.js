@@ -99,12 +99,12 @@ export default function Home() {
           cta="Add Agentic Changelog"
         />
         <Hero
-          overline=" "
+          overline="Between now and this Friday"
           aspect={1358}
           img="/bytez.png"
           headline="Get Free Inference"
-          subheader="Email `team@bytez.com` with promo-code `AWS` for free access"
-          lastElement="Every month: 50M tokens; 120k images; 2.5k videos; and more, for free, every month"
+          subheader="Email `team@bytez.com` with promo-code `AWS-GenAI`"
+          lastElement="Every month we'll give you: 50M tokens; 120k images; 2.5k videos; and more, for free, every month ❤️"
           cta="Say hello 🖖"
         />
       </Box>
