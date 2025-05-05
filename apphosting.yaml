@@ -8,7 +8,6 @@ runConfig:
 env:
   - variable: NODE_ENV
     value: production
-
   - variable: BYTEZ_API_KEY
     secret: BYTEZ_API_KEY
   - variable: OPENAI_API_KEY
