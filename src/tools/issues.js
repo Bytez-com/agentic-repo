@@ -11,13 +11,17 @@ const sdk = new Bytez(
 const model = sdk.model("openai/gpt-4o-mini", process.env.OPENAI_API_KEY);
 
 export default async function issueTool(uid, issue, repository, sender) {
-  const response = await generateResponse(issue, sender);
+  try {
+    const response = await generateResponse(issue, sender);
 
-  await replyToIssue(uid, repository, issue, response);
+    await replyToIssue(uid, repository, issue, response);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 async function generateResponse({ title, body }, sender) {
-  const { output } = await model.run([
+  const { output, error } = await model.run([
     {
       role: "system",
       content: `
@@ -35,11 +39,15 @@ async function generateResponse({ title, body }, sender) {
         ## Issue title:
         ${title}
 
-        ## Issue text:
+        ## Issued text:
         ${body}
       `,
     },
   ]);
+
+  if (error) {
+    throw new Error(error);
+  }
 
   return output.content;
 }
