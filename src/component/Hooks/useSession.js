@@ -9,10 +9,12 @@ export default function useSession() {
 
   useEffect(() => {
     return onAuthStateChanged(getAuth(), (session) => {
-      if (session.isAnonymous) {
-        router.replace("/");
-      } else {
-        setSession(session);
+      if (session) {
+        if (session.isAnonymous) {
+          router.replace("/");
+        } else {
+          setSession(session);
+        }
       }
     });
   }, [router]);
