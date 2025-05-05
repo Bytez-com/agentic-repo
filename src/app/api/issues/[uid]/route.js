@@ -1,4 +1,4 @@
-import { getFirestoreData } from "@/service/session";
+import issueTool from "@/tools/issues";
 
 export async function POST(req, { params }) {
   try {
@@ -6,9 +6,10 @@ export async function POST(req, { params }) {
       params,
       req.json(),
     ]);
-    const { accessToken } = await getFirestoreData(uid);
 
-    console.log({ uid, action, issue, repository, sender, accessToken });
+    if (action === "created") {
+      await issueTool(uid, issue, repository, sender);
+    }
 
     return new Response(undefined, { status: 204 });
   } catch (error) {
