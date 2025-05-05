@@ -65,7 +65,7 @@ export default function Dashboard() {
           <Typography level="h3">Select a repo</Typography>
           <Select
             name="repo"
-            value={repo}
+            value={repo || ""}
             placeholder="Select a repo"
             onChange={(_, repoUrl) => setRepo(repoUrl)}
           >

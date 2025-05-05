@@ -3,11 +3,8 @@ import getSession from "@/service/session";
 
 export async function GET() {
   try {
-    const {
-      accessToken,
-      data: { repo },
-    } = await getSession();
-    const images = await generateChangelog(repo, accessToken);
+    const { owner, repo, octokit } = await getSession();
+    const images = await generateChangelog(owner, repo, octokit);
 
     return Response.json(images);
   } catch (error) {

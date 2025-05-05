@@ -1,4 +1,3 @@
-import { Octokit } from "@octokit/rest";
 import Bytez from "bytez.js";
 
 const sdk = new Bytez(
@@ -8,11 +7,7 @@ const sdk = new Bytez(
 
 import("colors");
 
-export default async function changeLogTool(repoUrl, accessToken) {
-  const octokit = new Octokit({ auth: accessToken });
-  const url = repoUrl.split("/");
-  const repo = url.at(-1).trim();
-  const owner = url.at(-2);
+export default async function changeLogTool(owner, repo, octokit) {
   // step 1 - find new commits
   const newCommits = await getNewCommits(owner, repo, octokit);
   // step 2 - generate a changelog based on new commits

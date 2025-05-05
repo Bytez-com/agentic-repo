@@ -8,16 +8,14 @@ import {
   where,
   update,
   arrayUnion,
-} from "@/service/firebase/firestore";
+} from "@/service/firebase/admin";
 
 export async function POST(req) {
   try {
     const body = await req.json();
 
     if (body.action === "created" || body.action === "deleted") {
-      return new Response("success", {
-        status: 200,
-      });
+      return new Response("success");
     }
 
     const {
@@ -28,13 +26,13 @@ export async function POST(req) {
     } = body;
 
     if (action === "opened" || action === "deleted") {
-      const usersRef = collection(firestore, "users");
-
-      const querySnapshot = await getDocs(
-        query(usersRef, where("installation_id", "==", installation.id))
-      );
+      const { docs } = await firestore
+        .collection("users")
+        .where("installation_id", "==", installation.id)
+        .get();
       const users = [];
-      querySnapshot.forEach((doc) => {
+
+      docs.forEach((doc) => {
         users.push({ id: doc.id, ...doc.data() });
       });
 
@@ -69,25 +67,18 @@ export async function POST(req) {
 
         const updatedIssue = { url, title, body, response };
 
-        await update(`users/${user.id}`, {
-          issues: arrayUnion(updatedIssue),
-        });
+        await update(`users/${user.id}`, { issues: arrayUnion(updatedIssue) });
       } else {
         const newIssues = user.issues.filter((issue) => issue.url !== url);
 
-        await update(`users/${user.id}`, {
-          issues: newIssues,
-        });
+        await update(`users/${user.id}`, { issues: newIssues });
       }
     }
 
-    return new Response("success", {
-      status: 200,
-    });
+    return new Response("success");
   } catch (error) {
     console.error(error);
-    return new Response("failed", {
-      status: 500,
-    });
+
+    return new Response("failed", { status: 500 });
   }
 }

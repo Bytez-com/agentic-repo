@@ -1,12 +1,8 @@
-import { Octokit } from "@octokit/rest";
-
 import getSession from "@/service/session";
 
 export async function GET() {
   try {
-    const { accessToken } = await getSession(false);
-    const octokit = new Octokit({ auth: accessToken });
-    // one page (up to 100 repos)
+    const { octokit } = await getSession(false);
     const { data } = await octokit.rest.repos.listForAuthenticatedUser({
       visibility: "all", // public | private | all   (default: all)
       affiliation: "owner,collaborator,organization_member",

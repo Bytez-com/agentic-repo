@@ -55,6 +55,7 @@ export default function ChangeLog() {
         autoHideDuration={7e3}
         onClose={() => setOpen(false)}
         startDecorator={<SuccessIcon />}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
         Changelog generated
       </Snackbar>

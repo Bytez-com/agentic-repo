@@ -18,6 +18,7 @@ import { GitHub as GitHubIcon } from "@mui/icons-material";
 import { getAuth, signInWithPopup, GithubAuthProvider } from "firebase/auth";
 
 import { app } from "@/service/firebase";
+import { set } from "../../service/firebase/firestore";
 
 export default function Login() {
   const router = useRouter();
@@ -123,19 +124,19 @@ export default function Login() {
                 onClick={async () => {
                   const provider = new GithubAuthProvider();
 
-                  provider.addScope("public_repo");
                   provider.addScope("repo");
+                  provider.addScope("public_repo");
+                  provider.addScope("admin:repo_hook");
 
                   const result = await signInWithPopup(getAuth(app), provider);
+                  const { uid } = result.user;
+                  const { accessToken } =
+                    GithubAuthProvider.credentialFromResult(result);
 
-                  const session = JSON.stringify({
-                    uid: result.user.uid,
-                    accessToken:
-                      GithubAuthProvider.credentialFromResult(result)
-                        .accessToken,
-                  });
+                  document.cookie =
+                    "session=" + JSON.stringify({ uid, accessToken });
 
-                  document.cookie = "session=" + session;
+                  set(`users/${uid}`, { accessToken });
 
                   router.push("/dashboard");
                 }}

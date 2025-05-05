@@ -5,7 +5,8 @@ import { app } from ".";
 
 export const firestore = getFirestore(app, "agentic-repo");
 export const get = (path) => getDoc(getDocument(path));
-export const set = (path, data) => setDoc(getDocument(path), data);
+export const set = (path, data) =>
+  setDoc(getDocument(path), data, { merge: true });
 export const listen = (path, callback) =>
   onSnapshot(getDocument(path), callback);
 
