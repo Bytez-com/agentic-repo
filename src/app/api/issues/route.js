@@ -35,7 +35,7 @@ async function hasWebhook(owner, repo, octokit, uid) {
   });
 
   for (const hook of hooks) {
-    if (hook.config?.url?.toLowerCase() === webhookUrl) {
+    if (hook.config?.url === webhookUrl) {
       return true;
     }
   }
