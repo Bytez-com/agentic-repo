@@ -1,4 +1,6 @@
 import { Octokit } from "@octokit/rest";
+import Bytez from "bytez.js";
+
 import { getFirestoreData } from "@/service/session";
 
 const sdk = new Bytez(
