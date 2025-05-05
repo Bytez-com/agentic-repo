@@ -5,6 +5,7 @@ import TwoSidedLayout from "@/component/TwoSidedLayout";
 
 export default function Hero({
   img,
+  aspect,
   overline = "The power to do more",
   headline = "A large headlinerer about our product features & services",
   subheader = "A descriptive secondary text placeholder. Use it to explain your business offer better.",
@@ -19,7 +20,7 @@ export default function Hero({
   cta = "Get Started",
 }) {
   return (
-    <TwoSidedLayout img={img}>
+    <TwoSidedLayout img={img} aspect={aspect}>
       <Typography color="primary" sx={{ fontSize: "lg", fontWeight: "lg" }}>
         {overline}
       </Typography>

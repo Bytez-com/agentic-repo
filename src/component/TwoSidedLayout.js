@@ -3,7 +3,7 @@ import Image from "next/image";
 import { AspectRatio, Box, Container } from "@mui/joy";
 import { typographyClasses } from "@mui/joy/Typography";
 
-const TwoSidedLayout = ({ children, reversed, img }) => (
+const TwoSidedLayout = ({ children, reversed, img, aspect = 600 }) => (
   <Container
     sx={[
       (theme) => ({
@@ -48,7 +48,7 @@ const TwoSidedLayout = ({ children, reversed, img }) => (
       {children}
     </Box>
     <AspectRatio
-      ratio={600 / 520}
+      ratio={aspect / 588}
       variant="outlined"
       maxHeight={300}
       sx={(theme) => ({
@@ -57,11 +57,11 @@ const TwoSidedLayout = ({ children, reversed, img }) => (
         [theme.breakpoints.up(834)]: {
           alignSelf: "initial",
           flexGrow: 1,
-          "--AspectRatio-maxHeight": "520px",
-          "--AspectRatio-minHeight": "400px",
+          "--AspectRatio-maxHeight": aspect === 600 ? "520px" : undefined,
+          "--AspectRatio-minHeight": aspect === 600 ? "400px" : undefined,
         },
         borderRadius: "sm",
-        bgcolor: "background.level2",
+        bgcolor: aspect === 600 ? "background.level2" : "background.level3",
         flexBasis: "50%",
       })}
     >

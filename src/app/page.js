@@ -98,6 +98,15 @@ export default function Home() {
           lastElement="Turn on Auto-Changelog and publish your next release before lunch."
           cta="Add Agentic Changelog"
         />
+        <Hero
+          overline=" "
+          aspect={1358}
+          img="/bytez.png"
+          headline="Get Free Inference"
+          subheader="Email `team@bytez.com` with promo-code `AWS` for free access"
+          lastElement="Every month: 50M tokens; 120k images; 2.5k videos; and more, for free, every month"
+          cta="Say hello 🖖"
+        />
       </Box>
     </>
   );

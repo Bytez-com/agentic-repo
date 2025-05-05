@@ -3,6 +3,8 @@ import { Octokit } from "@octokit/rest";
 import { sdk } from "@/service/bytez";
 import { getFirestoreData } from "@/service/session";
 
+const mistral = sdk.model("mistral/mistral-small", process.env.MISTRAL_API_KEY);
+
 export default async function issueTool(uid, issue, repository, sender) {
   try {
     const response = await generateResponse(issue, sender);
@@ -14,8 +16,7 @@ export default async function issueTool(uid, issue, repository, sender) {
 }
 
 async function generateResponse({ title, body }, sender) {
-  const model = sdk.model("openai/gpt-4o-mini", process.env.OPENAI_API_KEY);
-  const { output, error } = await model.run([
+  const { output, error } = await mistral.run([
     {
       role: "system",
       content: `
