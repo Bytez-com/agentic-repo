@@ -1,4 +1,4 @@
-![Changelog Banner](https://cdn.bytez.com/images/inference/1SFrfLDpGMYxt28wx_5yr.png)
+![](https://cdn.bytez.com/images/inference/2emWr4UQAr6vPRileY8-W.png)
 
 # Changelog
 
@@ -8,13 +8,13 @@
 
 ## Fixes
 - Removed ESLint errors (995afda)
-- Tested cookie functionality in Firebase hosting (da1c664)
+- Test cookie functionality in Firebase hosting (da1c664)
+- Disable tools that aren't enabled (a8e2d37)
 
 ## Chores
 - Add initial CHANGELOG (fc1a9c5)
-- Update CHANGELOG (multiple commits, [skip ci])
-- Start building the CHANGELOG tool (a39c3b6)
-- Disable tools that aren't enabled (a8e2d37)
+- Start building the changelog tool (a39c3b6)
+- Update CHANGELOG [skip ci] (multiple commits)
 
 ## Documentation
-- Updated CHANGELOG.md (multiple commits)
+- Update CHANGELOG.md (48ad018)
