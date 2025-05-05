@@ -4,7 +4,7 @@ export async function POST(req, { params }) {
   try {
     const [{ uid }, { action, issue, repository, sender }] = await Promise.all([
       params,
-      req.body(),
+      req.json(),
     ]);
     const { accessToken } = await getFirestoreData(uid);
 
