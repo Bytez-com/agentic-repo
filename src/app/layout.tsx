@@ -16,6 +16,6 @@ export default function RootLayout({
   );
 }
 export const metadata: Metadata = {
-  title: "Agent Repo",
+  title: "Agentic Repo",
   description: "Awaken your repo",
 };
