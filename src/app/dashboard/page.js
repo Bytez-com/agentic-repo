@@ -1,8 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Typography, Box, Input, Button, Stack } from "@mui/joy";
-import { getAuth } from "firebase/auth";
+import {
+  Typography,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardActions,
+  Stack,
+  Input,
+} from "@mui/joy";
+import { Check as CheckIcon } from "@mui/icons-material";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import Sidebar from "@/component/Sidebar";
 import { listen, set } from "@/service/firebase/firestore";
@@ -12,24 +21,23 @@ export default function Dashboard() {
   const [user, setUser] = useState();
   const [repo, setRepo] = useState("");
   const [saving, setSaving] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
-    const { currentUser } = getAuth();
-
-    if (currentUser === null) {
-      return router.replace("/");
-    }
-
-    setSession(currentUser);
-
-    return listen(`users/${currentUser.uid}`, (doc) => {
-      const userData = doc.data();
-
-      setUser(userData);
-      setRepo(userData?.repo);
+    return onAuthStateChanged(getAuth(), (session) => {
+      setSession(session);
     });
-  }, [router]);
+  }, []);
+
+  useEffect(() => {
+    if (session) {
+      return listen(`users/${session.uid}`, (doc) => {
+        const userData = doc.data();
+
+        setUser(userData);
+        setRepo(userData?.repo);
+      });
+    }
+  }, [session]);
 
   return session ? (
     <Box sx={{ display: "flex", minHeight: "100dvh" }}>
@@ -64,9 +72,55 @@ export default function Dashboard() {
             justifyContent: "space-between",
           }}
         >
-          <Typography level="h2" component="h1">
-            Save your repo
-          </Typography>
+          <Card sx={{ maxWidth: 400 }}>
+            <Typography level="h2" fontSize="lg" mb={1}>
+              Install Github App
+            </Typography>
+            {repo ? (
+              <CardContent>
+                <Typography>Agent installed:</Typography>
+                <Typography endDecorator={<CheckIcon />}>
+                  <Typography
+                    style={{ textDecoration: "underline", cursor: "pointer" }}
+                    onClick={() => window.open(repo)}
+                  >
+                    {repo}
+                  </Typography>
+                </Typography>
+                <Button
+                  variant="solid"
+                  color="primary"
+                  onClick={() => {
+                    const githubAppAuthUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api/webhook/github_install_app?uid=${session.uid}`;
+                    window.open(githubAppAuthUrl);
+                  }}
+                >
+                  Force Reinstall
+                </Button>
+              </CardContent>
+            ) : (
+              <>
+                <CardContent>
+                  <Typography>
+                    To begin using the changelog and issues feature, you will
+                    need to install the github app into your repo
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    variant="solid"
+                    color="primary"
+                    onClick={() => {
+                      const githubAppAuthUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api/webhook/github_install_app?uid=${session.uid}`;
+                      window.open(githubAppAuthUrl);
+                    }}
+                  >
+                    Install
+                  </Button>
+                </CardActions>
+              </>
+            )}
+          </Card>
         </Box>
         <form
           onSubmit={async (event) => {

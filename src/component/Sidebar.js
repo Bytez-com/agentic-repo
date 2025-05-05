@@ -24,8 +24,13 @@ import {
   LogoutRounded as LogoutRoundedIcon,
 } from "@mui/icons-material";
 import { getAuth, signOut } from "firebase/auth";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Sidebar({ user }) {
+  const pathname = usePathname();
+
+  const router = useRouter();
+
   return (
     <Sheet
       className="Sidebar"
@@ -114,7 +119,10 @@ export default function Sidebar({ user }) {
           }}
         >
           <ListItem>
-            <ListItemButton selected>
+            <ListItemButton
+              selected={pathname === "/dashboard"}
+              onClick={() => router.replace("/dashboard")}
+            >
               <InstallIcon />
               <ListItemContent>
                 <Typography level="title-md">Install</Typography>
@@ -123,7 +131,10 @@ export default function Sidebar({ user }) {
           </ListItem>
 
           <ListItem>
-            <ListItemButton>
+            <ListItemButton
+              selected={pathname === "/changelog"}
+              onClick={() => router.replace("/changelog")}
+            >
               <ChangeLogIcon />
               <ListItemContent>
                 <Typography level="title-md">Changelog</Typography>
@@ -132,7 +143,10 @@ export default function Sidebar({ user }) {
           </ListItem>
 
           <ListItem>
-            <ListItemButton>
+            <ListItemButton
+              selected={pathname === "/issues"}
+              onClick={() => router.replace("/issues")}
+            >
               <IssuesIcon />
               <ListItemContent>
                 <Typography level="title-md">Issues</Typography>
