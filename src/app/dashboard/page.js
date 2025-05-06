@@ -1,6 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Typography, Box, Button, Stack, Select, Option } from "@mui/joy";
+import {
+  Typography,
+  Box,
+  Button,
+  Stack,
+  Select,
+  Option,
+  Snackbar,
+} from "@mui/joy";
+import { Check as SuccessIcon } from "@mui/icons-material";
 
 import useSession from "@/component/Hooks/useSession";
 import { listen, set } from "@/service/firebase/firestore";
@@ -10,6 +19,7 @@ export default function Dashboard() {
   const [repo, setRepo] = useState("");
   const [repos, setRepos] = useState([]);
   const [saving, setSaving] = useState(false);
+  const [open, setOpen] = useState(false);
   const session = useSession();
 
   useEffect(() => {
@@ -54,6 +64,7 @@ export default function Dashboard() {
             setSaving(true);
 
             await set(`users/${session.uid}`, { repo });
+            setOpen(true);
           } catch (error) {
             console.error(error);
           } finally {
@@ -80,6 +91,18 @@ export default function Dashboard() {
           </Button>
         </Stack>
       </form>
+      <Snackbar
+        open={open}
+        size="lg"
+        variant="solid"
+        autoHideDuration={7e3}
+        onClose={() => setOpen(false)}
+        startDecorator={<SuccessIcon />}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        color="success"
+      >
+        Agentic Agent installed
+      </Snackbar>
     </>
   ) : null;
 }

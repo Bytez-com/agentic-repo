@@ -168,7 +168,7 @@ async function addImages(changeLog) {
     */
     log("Generating images...");
 
-    console.time("images".bgBlue);
+    // console.time("images".bgBlue);
     const imagePrompt = `16bitscene pixelart: ${claudeResponse.output.content}`;
     const results = await Promise.all([
       // popular models
@@ -180,8 +180,8 @@ async function addImages(changeLog) {
       pixelArt.run(imagePrompt),
       dreamShaper.run(imagePrompt),
     ]);
-    console.timeEnd("images".bgBlue);
-    console.log(results);
+    // console.timeEnd("images".bgBlue);
+    // console.log(results);
     /*
       Let's ask a reasoning LLM to judge which image is best for our changelog
     */
