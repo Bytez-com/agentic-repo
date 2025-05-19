@@ -1,32 +1,36 @@
-![Changelog Header](https://cdn.bytez.com/images/inference/uWz5MQLcOe1z79tenrDFs.png)
+# Changelog
 
-## [1.19.0] - 2023-07-06
+![Release Header](https://cdn.bytez.com/model/output/PublicPrompts/All-In-One-Pixel-Model/E3dZbLb5V7XwhNa4RZfjL.png)
+
+## New Release!
 
 ### Features:
-- Add snackbar to installation
-- Improve landing page
-- Cookies now work in app hosting
-- Firebase integrated
+- Added snackbar during installation
+- Improved landing page
+- Integrated Firebase
+- Implemented tool for demoing issues
+- Added changelog tool and page
+- Cookies now work on app hosting
 
 ### Fixes:
-- Fix uid
-- Fix sign out bug
-- Fix build errors
-- Correcting firebase-admin
-- Fix missing import
-- Fix webhook install checker
+- Fixed UID issue
+- Fixed sign-out bug
+- Corrected issue with firebase-admin
+- Removed unused dependencies and routes 
 
 ### Chores:
-- Delete unused files
-- Update changelogs
-- Merge branches
-- Add initial changelogs
-- Remove unused files
-- Make Bytez SDK more efficient
-- Log errors
-- Make secrets available only during runtime
-- Add/update/retry adding secrets
-- Update CHANGELOG.md
+- Added initial changelog files (multiple)
+- Updated readme
+- Deleted unused files (multiple)
+- Migrated away from OpenAI
+- Fixed rate limit issue
+- Made Bytez SDK more efficient
+- Added/updated secrets for app hosting
+- Fixed build errors and missing imports
 
 ### Docs:
-- Update readme
+- None
+
+--- 
+
+Bytez Release Manager
