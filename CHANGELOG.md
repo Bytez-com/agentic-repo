@@ -1,33 +1,39 @@
-![Changelog Image](https://cdn.bytez.com/model/output/Lykon/dreamshaper-8/EC2NPJQIGDk5NJBFIUwdq.png)
+![Changelog Header](https://cdn.bytez.com/model/output/stabilityai/stable-diffusion-xl-base-1.0/6f7dmgzwWC5j6gZJSN7V4.png)
 
-## Release Notes:
+## [2.99.0] - 2023-07-06
 
-### Features: 
-- Added snackbar to installation process.
-- Improved landing page. 
-- Migrated away from OpenAI. 
-- Integrated Firebase into the project. 
-- Implemented tool for adding secrets to apphosting.
-- Added changelog tool and page. 
+### Features:
+- Add changelog tool and page
+- Snackbar added to installation
+- Improve landing page
+- Firebase integrated
+- Cookies now work in app hosting
 
 ### Fixes:
-- Fixed UID issues. 
-- Resolved a sign-out bug. 
-- Corrected an issue with Firebase-Admin.
-- Fixed build errors and missing imports. 
+- Fix UID
+- Fix sign out bug
+- Correcting firebase-admin
+- Fix missing import
+- Fix webhook install checker
+- Fix build errors
+- Log error
+- Disable tools that aren't enabled
+- Remove unused files, deps, and routes
 
-### Chores: 
-- Updated the changelog. 
-- Deleted unused files and cleaned up the repository.
-- Made some changes to improve CI/CD workflows:
-    - Skipping CI for changelog updates.
-    - Making secrets only available during runtime. 
+### Chores:
+- Update changelog and readme files
+- Migrate away from OpenAI
+- Make Bytez SDK more efficient
+- Add/remove secrets for app hosting
+- Improve runtime security for secrets
+- Try to fix rate limit issue
+- Remove eslint errors
+- Test cookie functionality
+- Update initial changelog with new commits
 
-### Documentation: 
-- Added and updated the readme file. 
-- Documented the integration of Firebase. 
-- Started building a tool for generating the changelog. 
+### Documentation:
+- Add/update readme
 
-### Initial Commit: 
-- Initial commit with a placeholder changelog.
-- Created the initial repository structure.
+### Initial Commits:
+- First commit
+- Initial changelog commits
