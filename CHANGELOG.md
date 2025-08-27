@@ -1,24 +1,33 @@
-![AI Generated Spaceship Image](https://cdn.bytez.com/model/output/Lykon/dreamshaper-8/qKux-pCk_SEYjgLczv4FT.png)
+![Changelog Image](https://cdn.bytez.com/model/output/Lykon/dreamshaper-8/EC2NPJQIGDk5NJBFIUwdq.png)
 
 ## Release Notes:
 
 ### Features: 
-- Added changelog tool and corresponding page for users.
-- Integrated Firebase into the project.
-- Implemented snackbar on the installation page. 
+- Added snackbar to installation process.
+- Improved landing page. 
 - Migrated away from OpenAI. 
+- Integrated Firebase into the project. 
+- Implemented tool for adding secrets to apphosting.
+- Added changelog tool and page. 
 
 ### Fixes:
-- Fixed build errors including firebase-admin, eslint issues, and missing imports.
+- Fixed UID issues. 
 - Resolved a sign-out bug. 
-- Improved the landing page.
-- Logged errors when encountering rate limits. 
+- Corrected an issue with Firebase-Admin.
+- Fixed build errors and missing imports. 
 
 ### Chores: 
-- Maintained and updated the changelog.
-- Added and deleted unused files. Removed unnecessary dependencies and routes.
-- Switched to Google Secrets for better security. 
+- Updated the changelog. 
+- Deleted unused files and cleaned up the repository.
+- Made some changes to improve CI/CD workflows:
+    - Skipping CI for changelog updates.
+    - Making secrets only available during runtime. 
 
-### Documentation Updates:
-- Updated and added content to the readme file. 
-- Documented the initial changelog.
+### Documentation: 
+- Added and updated the readme file. 
+- Documented the integration of Firebase. 
+- Started building a tool for generating the changelog. 
+
+### Initial Commit: 
+- Initial commit with a placeholder changelog.
+- Created the initial repository structure.
