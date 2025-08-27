@@ -1,36 +1,37 @@
-# Changelog
+![Changelog Header](https://images.unsplash.com/photo-1618401471353-b98afee0b2eb)
 
-![Release Header](https://cdn.bytez.com/model/output/PublicPrompts/All-In-One-Pixel-Model/E3dZbLb5V7XwhNa4RZfjL.png)
-
-## New Release!
+## [Unreleased]
 
 ### Features:
-- Added snackbar during installation
-- Improved landing page
-- Integrated Firebase
-- Implemented tool for demoing issues
-- Added changelog tool and page
-- Cookies now work on app hosting
+- Add changelog tool and corresponding page for users
+- Integrate Firebase into the project
+- Implement cookie functionality for app hosting
 
 ### Fixes:
-- Fixed UID issue
-- Fixed sign-out bug
-- Corrected issue with firebase-admin
-- Removed unused dependencies and routes 
+- Fix UID issues
+- Correcting issue with firebase-admin
+- Fix sign-out bug
+- Address build errors
+- Improve landing page
 
 ### Chores:
-- Added initial changelog files (multiple)
-- Updated readme
-- Deleted unused files (multiple)
-- Migrated away from OpenAI
-- Fixed rate limit issue
-- Made Bytez SDK more efficient
-- Added/updated secrets for app hosting
-- Fixed build errors and missing imports
+- Update changelogs to keep record of progress ([skip ci])
+- Delete, remove, and migrate unused files
+- Make the Bytez SDK more efficient
+- Try fixing rate limit issue
 
 ### Docs:
-- None
+- Add and update readme files
 
---- 
+## [0.1.0] - 2023-06-06
 
-Bytez Release Manager
+### Features:
+- Initial release of the project
+- Integrate App Hosting
+- Add snackbar to installation
+
+### Chores:
+- Create initial changelog
+
+[Unreleased]: https://github.com/Bytez-com/agentic-repo/compare/main...develop
+[0.1.0]: https://github.com/Bytez-com/agentic-repo/releases/tag/0.1.0
