@@ -1,29 +1,26 @@
-![changelog image](https://cdn.bytez.com/model/output/stabilityai/stable-diffusion-xl-base-1.0/3L7oq_MJIjjIao_Ljs7pJ.png)
+![Changelog Image](https://cdn.bytez.com/model/output/stabilityai/stable-diffusion-xl-base-1.0/20uYxM7KSHIKWTKasysqV.png)
 
-## [Unreleased]
+## Release Notes:
 
-### Features:
-- Add changelog tool and page
-- Snackbar added to installation
-- Improve landing page
-- Firebase integrated
-- Cookies now work in app hosting 
+### Features: 
+- Added changelog tool and corresponding page for users
+- Integrated Firebase into the platform
+- Implemented webhook integration 
+- Added snackbar to the installation process 
 
-### Fixes:
-- Fix UID
-- Fix sign out bug
-- Fix build errors
-- Correcting firebase-admin
-- Fix missing import
-- Fix webhook install checker
+### Fixes: 
+- Fixed sign-out bug
+- Corrected an issue with firebase-admin
+- Removed unused files and dependencies
+- Logged errors to help with debugging
+- Improved landing page 
 
-### Chores:
-- Update changelog and readme files
-- Delete, remove unused files and deps
-- Merge branches
-- Make Bytez SDK more dry
-- Try to fix rate limit issue
-- Add initial changelogs
+### Chores: 
+- Updated the changelog and readme files 
+- Migrated away from OpenAI
+- Removed and deleted unused files 
+- Added and updated secrets for app hosting
+- Fixed build errors and issues with import statements 
 
-### Docs:
-- Add and update readme
+### Documentation: 
+- Added and updated the readme file with latest changes
