@@ -1,50 +1,55 @@
 # Changelog
 
-![Changelog Image](https://cdn.bytez.com/model/output/stabilityai/stable-diffusion-xl-base-1.0/ZGU1aoPHMZZHKhkzarbSQ.png)
+![Changelog Header](https://cdn.bytez.com/model/output/prompthero/openjourney-v4/eV8lniaUICnrDBHpNUjaD.png)
 
 ## Features
-- Add snackbar to installation
-- Cookies now work in app hosting
-- Firebase integrated
-- Make Bytez SDK dry
-- Remove unused files/routes/deps
-- Start building the changeLog tool
-- Try switching to Google secrets
-- Update readme
+- Added snackbar to installation.
+- Improved landing page.
+- Made Bytez SDK dry.
+- Made secrets only available during runtime.
+- Added secrets to apphosting.
+- Added missing env variables to build.
+- Finished demo of issues tool.
+- Started working on webhook integration.
+- Corrected firebase-admin.
+- Firebase integrated.
+- Cookies now work in app hosting.
+- Added changelog tool and page.
 
 ## Fixes
-- Correcting firebase-admin
-- Fix build errors
-- Fix env variable name
-- Fix landing page
-- Fix missing import
-- Fix sign out bug
-- Fix webhook install checker
-- Improve landing page
-- Log error
-- Make secrets only available during runtime
-- Remove eslint errors
-- Retry adding secrets
-- Test cooke functionality in firebase hosting
+- Fixed missing import.
+- Fixed webhook install checker.
+- Fixed sign out bug.
+- Fixed build errors.
+- Removed unused deps.
+- Removed unused routes.
+- Fixed env variable name.
+- Retried adding secrets.
+- Tried switching to google secrets.
+- Fixed rate limit issue.
+- Removed unused files.
+- Logged error.
+- Fixed uid.
+- Fixed missing import.
+- Fixed build errors.
 
 ## Chores
-- Add initial CHANGELOG
-- Add secrets to apphosting
-- Add missing env variables to build
-- Begin testing issues tool
-- Chore: update CHANGELOG [skip ci]
-- Delete CHANGELOG.md
-- Delete unused files
-- Disable tools that aren't enabled
-- Finish demo of issues tool
-- Fix UID
-- Init
-- Merge branch 'main'
-- Remove unused files
-- Start working on webhook integration
-- Try to fix rate limit issue
-- Update CHANGELOG.md
+- Updated CHANGELOG multiple times.
+- Added initial CHANGELOG.
+- Deleted CHANGELOG.md.
+- Removed unused files.
+- Merged branches.
+- Updated readme.
+- Added readme.
+- Final checkin.
+- Updated CHANGELOG.md.
+- Started building the CHANGELOG tool.
+- Removed eslint errors.
+- Tested cookie functionality in firebase hosting.
+- Disabled tools that aren't enabled.
+- Init.
+- First commit.
 
 ## Docs
-- Add changelog tool and page
-- Add readme
+- Updated readme.
+- Added readme.
