@@ -1,45 +1,50 @@
-![Changelog Image](https://cdn.bytez.com/model/output/stabilityai/stable-diffusion-xl-base-1.0/GD-f4L6-K-VE28YshvILv.png)
+# Changelog
 
-## [2.99.0] - 2023-07-06
+![Changelog Image](https://cdn.bytez.com/model/output/stabilityai/stable-diffusion-xl-base-1.0/ZGU1aoPHMZZHKhkzarbSQ.png)
 
-### Features:
-- Add changelog tool and corresponding page for users
-- Integrate Firebase into the project
-- Add snackbar to installation process
+## Features
+- Add snackbar to installation
+- Cookies now work in app hosting
+- Firebase integrated
+- Make Bytez SDK dry
+- Remove unused files/routes/deps
+- Start building the changeLog tool
+- Try switching to Google secrets
+- Update readme
+
+## Fixes
+- Correcting firebase-admin
+- Fix build errors
+- Fix env variable name
+- Fix landing page
+- Fix missing import
+- Fix sign out bug
+- Fix webhook install checker
 - Improve landing page
-- Migrate away from OpenAI
+- Log error
+- Make secrets only available during runtime
+- Remove eslint errors
+- Retry adding secrets
+- Test cooke functionality in firebase hosting
 
-### Fixes:
-- Fix build errors and sign-out bug
-- Correcting firebase-admin dependency issue
-- Fix missing import and webhook install checker
-- Log errors when rate limits are hit
-- Fix environment variable name issue
+## Chores
+- Add initial CHANGELOG
+- Add secrets to apphosting
+- Add missing env variables to build
+- Begin testing issues tool
+- Chore: update CHANGELOG [skip ci]
+- Delete CHANGELOG.md
+- Delete unused files
+- Disable tools that aren't enabled
+- Finish demo of issues tool
+- Fix UID
+- Init
+- Merge branch 'main'
+- Remove unused files
+- Start working on webhook integration
+- Try to fix rate limit issue
+- Update CHANGELOG.md
 
-### Chores:
-- Update and maintain the changelog
-- Delete and remove unused files, dependencies, and routes
-- Make the Bytez SDK more efficient (DRY)
-- Add and update readme files
-
-### Documentation:
-- None
-
-## [1.0.0] - 2023-06-05
-
-Initial release. Basic functionality and structure are in place.
-
-### Features:
-- Basic project setup and structure
-- Add initial changelog
-- Integrate App Hosting
-
-### Fixes:
-- None
-
-### Chores:
-- Initial changelog entries
-- First commits and project initialization
-
-### Documentation:
-- None
+## Docs
+- Add changelog tool and page
+- Add readme
